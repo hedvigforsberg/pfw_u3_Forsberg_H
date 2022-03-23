@@ -1,21 +1,17 @@
 "use strict";
 
-// Global Variables
+// GLOBAL VARIABLES
 
 let input = document.getElementById("searchbox");
 
-// Function to clear input-box on each reload.
+// FUNCTIONS
+
+// Function to clear input-box on each page-refresh.
 window.onload = function () {
   document.getElementById("searchbox").value = "";
 };
 
-// Function to search in the input-box for students by their last name from the letters you type.
-
-// function searchForStudent() {
-
-// }
-
-// Function to find students by their last name.
+// Function to find students in the database by their last name.
 
 function findStudentsByLastName() {
   let student = DATABASE.students
@@ -24,7 +20,7 @@ function findStudentsByLastName() {
   return student;
 }
 
-// Function to render students onto the webpage.
+// Function to create a student to later render onto the webpage.
 
 function createStudent(student) {
   let div = document.createElement("div");
@@ -35,14 +31,17 @@ function createStudent(student) {
   div.innerHTML = `${student}`;
 };
 
+// Function to create HTML to render the students onto the webpage. 
+
 function createHTML(students) {
   students.forEach(student => {
     createStudent(student);
   })
 }
 
-// Event Listener
+// EVENT LISTENERS
 
+// Event-listener to run the functions to filter through students each time a key is pressed.
 input.addEventListener("keyup", function () {
   let student = findStudentsByLastName();
   let studentsDiv = document.getElementById("students");
