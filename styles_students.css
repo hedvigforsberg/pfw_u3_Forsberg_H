@@ -1,0 +1,15 @@
+body {
+    height: 100vh;
+    background-color:aliceblue;
+}
+
+
+
+.students {
+    border: solid 1px skyblue  ;
+    height: 100%;
+    width: 100%;;
+    padding: 10px;
+    margin-top: 10px;
+
+}

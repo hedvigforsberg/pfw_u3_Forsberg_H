@@ -4,6 +4,9 @@
 
 let input = document.getElementById("searchbox");
 
+// IMPORTANT NOTES:
+// - The input box is currently not case insensitive.
+
 // FUNCTIONS
 
 // Function to clear input-box on each page-refresh.
@@ -14,31 +17,43 @@ window.onload = function () {
 // Function to find students in the database by their last name.
 
 function findStudentsByLastName() {
-  let student = DATABASE.students
-    .filter((student) => student.lastName.toLowerCase().includes(input.value))
+  let foundStudent = DATABASE.students
+    .filter((student) =>
+      student.lastName.toLowerCase().includes(input.value.toLowerCase()))
     .map((student) => student.firstName + " " + student.lastName);
-  return student;
-}
+  
+  foundStudent.sort();
+  return foundStudent;
+};
 
-// Function to create a student to later render onto the webpage.
+// Function to create a student.
 
 function createStudent(student) {
   let div = document.createElement("div");
-  div.classList.add("students");
+
   let studentsDiv = document.getElementById("students");
   studentsDiv.appendChild(div);
 
-  div.innerHTML = `${student}`;
+  div.innerHTML = `
+    <div>${student}</div>
+    <div>(Total: ${"totalCredits"} credits)</div>
+    <div id=courses>Courses:</div>
+  `;
 };
 
-// Function to create HTML to render the students onto the webpage. 
+// Function to loop through each student to add the HTML onto the webpage.
 
-function createHTML(students) {
-  students.forEach(student => {
+function renderStudents(students) {
+  students.forEach((student) => {
     createStudent(student);
-  })
-}
+  });
+};
 
+// Function to find courses
+
+function findCoursesForStudent () {
+  let student = foundStudent;
+}
 // EVENT LISTENERS
 
 // Event-listener to run the functions to filter through students each time a key is pressed.
@@ -47,7 +62,7 @@ input.addEventListener("keyup", function () {
   let studentsDiv = document.getElementById("students");
 
   studentsDiv.innerHTML = "";
-  createHTML(student);
+  renderStudents(student);
 
   if (input.value == 0) {
     studentsDiv.innerHTML = "";
