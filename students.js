@@ -4,12 +4,13 @@
 
 let input = document.getElementById("searchbox");
 
-// IMPORTANT NOTES:
-// - The input box is currently not case insensitive.
-
 // FUNCTIONS
 
 // Function to clear input-box on each page-refresh.
+
+window.onload = function () {
+  document.getElementById("searchbox").value = "";
+};
 
 // Function to find students in the database by their last name.
 
@@ -17,14 +18,13 @@ function findStudentsByLastName() {
   let student = DATABASE.students.filter((student) =>
     student.lastName.toLowerCase().includes(input.value.toLowerCase())
   );
-  // .map((student) => student.firstName + " " + student.lastName);
 
   student.sort();
 
   return student;
 }
 
-// Function to create a student.
+// Function to create a student with the information.
 
 function renderStudent(student) {
   let div = document.createElement("div");
@@ -45,18 +45,32 @@ function renderStudent(student) {
 
   for (let i = 0; i < foundCourses.length; i++) {
     let foundCourse = foundCourses[i];
+    // let passedCredits = DATABASE.students[i].courses[i].passedCredits;
 
-    let courseDiv = document.createElement("div");
-    courseDiv.classList.add("course");
-    div.appendChild(courseDiv);
+    let courseTitle = document.createElement("div");
+    courseTitle.classList.add("course");
+    div.appendChild(courseTitle);
     
-    courseDiv.innerText =
-      foundCourse.title + ", " + "of" + " " + foundCourse.totalCredits + " " + "credits";
+    courseTitle.innerText =
+    foundCourse.title;
+
+    for (let i = 0; i < foundCourses.length; i++) {
+      let student = DATABASE.students[i];
+    }
+
+    let passedCredits = student.courses[i].passedCredits;
+    let semester = student.courses[i].started.semester;
+    let year = student.courses[i].started.year;
     
-  //   let courseInfoDiv = document.createElement("div");
-  //   courseDiv.appendChild(courseInfoDiv);
-  //   courseInfoDiv.innerText = 
-  //     foundCourse.started.semester;
+    let courseInfoDiv = document.createElement("p");
+    courseTitle.appendChild(courseInfoDiv);
+    courseInfoDiv.innerText =  semester + " " + year + " " + "(" + passedCredits + " " +  "of" + " " + foundCourse.totalCredits + " " + "credits" + ")";
+    
+    if (passedCredits == foundCourse.totalCredits) {
+      let course = courseInfoDiv.parentElement;
+      course.style.backgroundColor = "lightgreen";
+      
+    }
    }
 }
 
@@ -67,6 +81,8 @@ function renderStudents(students) {
     renderStudent(student);
   });
 }
+
+// Function to calculate the total credits for the student.
 
 function totalCredits(student) {
   let credit = [];
@@ -79,7 +95,8 @@ function totalCredits(student) {
   }
   return totalSum;
 }
-// Function to find courses
+
+// Function to find courses by their courseID.
 
 function findCourseById(student) {
   let foundCourses = [];
