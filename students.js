@@ -19,10 +19,20 @@ function findStudentsByLastName() {
     student.lastName.toLowerCase().includes(input.value.toLowerCase())
   );
 
-  student.sort();
-
   return student;
 }
+
+// student.sort(function (a, b) {
+//   if (a > b) {
+//     return -1;
+//   }
+
+//   if (b > a) {
+//     return 1;
+//   }
+//   return 0
+  
+// });
 
 // Function to create a student with the information.
 
@@ -31,13 +41,13 @@ function renderStudent(student) {
 
   let studentsDiv = document.getElementById("students");
   studentsDiv.appendChild(div);
-  
 
   let credits = totalCredits(student);
 
   let foundCourses = findCourseById(student);
   
   div.classList.add("student");
+  
   div.innerHTML = `
     <div>${student.firstName} ${student.lastName} (Total: ${credits} credits)</div>
     <div id=courses>Courses:</div>
