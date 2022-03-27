@@ -1,14 +1,24 @@
 body {
     height: 100vh;
+    margin: 0;
     background-color:aliceblue;
 }
 
+#wrapper {
+    margin: 30px;
+}
 
 
-.students {
+.student {
     border: solid 1px skyblue  ;
     height: 100%;
-    width: 100%;;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.course {
+    border: solid 1px skyblue  ;
+    height: 100%;
     padding: 10px;
     margin-top: 10px;
 
