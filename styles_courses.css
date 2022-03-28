@@ -1,0 +1,35 @@
+body {
+    height: 100vh;
+    background-color:aliceblue;
+}
+
+#header {
+}
+
+#wrapper {
+    margin: 30px;
+}
+
+
+.student {
+    border: solid 1px skyblue  ;
+    height: 100%;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.course {
+    border: solid 1px skyblue  ;
+    height: 100%;
+    padding: 10px;
+    margin-top: 10px;
+
+}
+
+.passed {
+    background-color: green;
+}
+
+p {
+    margin: 0;
+}

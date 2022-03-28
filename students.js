@@ -61,8 +61,7 @@ function renderStudent(student) {
     courseTitle.classList.add("course");
     div.appendChild(courseTitle);
     
-    courseTitle.innerText =
-    foundCourse.title;
+    courseTitle.innerText = foundCourse.title;
 
     for (let i = 0; i < foundCourses.length; i++) {
       let student = DATABASE.students[i];
