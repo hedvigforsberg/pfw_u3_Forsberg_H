@@ -33,3 +33,7 @@ body {
 p {
     margin: 0;
 }
+
+#text {
+    display: none;
+}

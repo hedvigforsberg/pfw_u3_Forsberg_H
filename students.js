@@ -63,10 +63,6 @@ function renderStudent(student) {
     
     courseTitle.innerText = foundCourse.title;
 
-    for (let i = 0; i < foundCourses.length; i++) {
-      let student = DATABASE.students[i];
-    }
-
     let passedCredits = student.courses[i].passedCredits;
     let semester = student.courses[i].started.semester;
     let year = student.courses[i].started.year;
