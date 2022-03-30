@@ -26,18 +26,6 @@ function findStudentsByLastName() {
 });
 }
 
-// student.sort(function (a, b) {
-//   if (a > b) {
-//     return -1;
-//   }
-
-//   if (b > a) {
-//     return 1;
-//   }
-//   return 0
-  
-// });
-
 // Function to create a student with the information.
 
 function renderStudent(student) {

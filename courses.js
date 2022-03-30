@@ -94,11 +94,6 @@ function renderCourse(course) {
     <div id="students">Students:</div>
   `;
 
-  // let allText = document.getElementById("courses");
-  // let allStudents = document.createElement("div");
-  // allStudents.classList.add("student");
-  // allText.appendChild(coursesDiv);
-
   for (let student of DATABASE.students) {
     for (let studentCourse of student.courses) {
       if (studentCourse.courseId == course.courseId) {
