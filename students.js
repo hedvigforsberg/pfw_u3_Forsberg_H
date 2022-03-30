@@ -19,7 +19,11 @@ function findStudentsByLastName() {
     student.lastName.toLowerCase().includes(input.value.toLowerCase())
   );
 
-  return student;
+  return student.sort(function(a, b){
+    if(a.lastName < b.lastName) { return -1; }
+    if(a.lastName > b.lastName) { return 1; }
+    return 0;
+});
 }
 
 // student.sort(function (a, b) {

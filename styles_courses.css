@@ -10,14 +10,6 @@ body {
     margin: 30px;
 }
 
-
-.student {
-    border: solid 1px skyblue  ;
-    height: 100%;
-    padding: 10px;
-    margin-top: 10px;
-}
-
 .course {
     border: solid 1px skyblue  ;
     height: 100%;
@@ -25,6 +17,28 @@ body {
     margin-top: 10px;
 
 }
+
+.teacher {
+    border: solid 1px skyblue  ;
+    height: 100%;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+#courseresponsible {
+    border: solid 1px skyblue  ;
+    height: 100%;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+#teachers {
+    border: solid 1px skyblue  ;
+    height: 100%;
+    padding: 10px;
+    margin-top: 10px;
+}
+
 
 .passed {
     background-color: lightgreen;

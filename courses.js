@@ -19,8 +19,15 @@ function findCourseByTitle() {
     course.title.toLowerCase().includes(input.value.toLowerCase())
   );
 
-  return course;
+
+  return course.sort(function(a, b){
+    if(a.title < b.title) { return -1; }
+    if(a.title > b.title) { return 1; }
+    return 0;
+  });
 }
+
+// .sort((a, b) => a.title - b.title)
 
 function findCourseResponsible(courses) {
   let courseResponsible = [];
@@ -50,15 +57,12 @@ function findTeachers(courses) {
         <div>${DATABASE.teachers[i].firstName} ${DATABASE.teachers[i].lastName} (${DATABASE.teachers[i].post})</div>
       `);
         teachers.push(text);
+        
       }
     }
   }
   return teachers.toString().split(",").join("");
 }
-
-// let findPassedCredits(student) {
-
-// }
 
 function findStudentById(course) {
   let foundStudents = [];
@@ -79,7 +83,7 @@ function renderCourse(course) {
   let coursesDiv = document.getElementById("courses");
   coursesDiv.appendChild(div);
 
-  div.classList.add("student");
+  div.classList.add("course");
 
   div.innerHTML = `
     <div>${course.title} (Total: ${course.totalCredits} credits)</div>
