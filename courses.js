@@ -24,6 +24,7 @@ function findCourseByTitle() {
 
 function findCourseResponsible(courses) {
   let courseResponsible = [];
+
   for (let i = 0; i < DATABASE.teachers.length; i++) {
     let div = document.createElement("div");
 
@@ -35,6 +36,24 @@ function findCourseResponsible(courses) {
     }
   }
   return courseResponsible;
+}
+
+function findTeachers(courses) {
+  let teachers = [];
+
+  for (let i = 0; i < DATABASE.teachers.length; i++) {
+    let div = document.createElement("div");
+
+    for (let j = 0; j < courses.teachers.length; j++) {
+      if (DATABASE.teachers[i].teacherId == courses.teachers[j]) {
+        let text = (div.innerHTML = `
+        <div>${DATABASE.teachers[i].firstName} ${DATABASE.teachers[i].lastName} (${DATABASE.teachers[i].post})</div>
+      `);
+        teachers.push(text);
+      }
+    }
+  }
+  return teachers.toString().split(",").join("");
 }
 
 // let findPassedCredits(student) {
@@ -55,22 +74,10 @@ function findStudentById(course) {
   return foundStudents;
 }
 
-// function findTeachersById(teachers) {
-//   for (let i = 0; i < DATABASE.teachers.length; i++) {
-//     let
-//   }
-
-//   }
-
-// Function to create the course with the information.
-
 function renderCourse(course) {
   let div = document.createElement("div");
-
   let coursesDiv = document.getElementById("courses");
   coursesDiv.appendChild(div);
-
-  let foundStudents = findStudentById(course);
 
   div.classList.add("student");
 
@@ -79,49 +86,33 @@ function renderCourse(course) {
     <div id="courseresponsible">Course Responsible: ${findCourseResponsible(
       course
     )}</div>
-    <div id="teachers">Teachers: ${"hej"}</div>
+    <div id="teachers">Teachers: ${findTeachers(course)}</div>
     <div id="students">Students:</div>
   `;
 
-  for (let i = 0; i < foundStudents.length; i++) {
-    let foundStudent = foundStudents[i];
-    // let passedCredits = DATABASE.students[i].courses[i].passedCredits;
+  // let allText = document.getElementById("courses");
+  // let allStudents = document.createElement("div");
+  // allStudents.classList.add("student");
+  // allText.appendChild(coursesDiv);
 
-    let studentName = document.createElement("div");
-    studentName.classList.add("student");
-    div.appendChild(studentName);
+  for (let student of DATABASE.students) {
+    for (let studentCourse of student.courses) {
+      if (studentCourse.courseId == course.courseId) {
+        let p = document.createElement("p");
+        p.classList.add("course");
+        p.innerHTML = `
+          <p>${student.firstName} ${student.lastName} (${studentCourse.passedCredits} credits) <br>
+          ${studentCourse.started.semester} ${studentCourse.started.year}
+          </p>
+        `;
 
-    studentName.innerText =
-      foundStudent.firstName + " " + foundStudent.lastName;
+        if (studentCourse.passedCredits == course.totalCredits) {
+          p.classList.add("passed");
+        }
 
-    // console.log(foundStudent.courses[1].started.semester);
-
-    for (let i = 0; i < foundStudent.courses.length; i++) {
-      if (foundStudent.courses[i].courseId == course.courseId) {
-        let semester = foundStudent.courses[i].started.semester;
-        let year = foundStudent.courses[i].started.year;
-
-        let studentInfoDiv = document.createElement("p");
-        studentName.appendChild(studentInfoDiv);
-        studentInfoDiv.innerText = `${semester} ${year}`;
+        div.appendChild(p);
       }
     }
-
-    // let passedCredits = student.courses[i].passedCredits;
-    // let semester = student.courses[i].started.semester;
-    // let year = student.courses[i].started.year;
-
-    // let studentInfoDiv = document.createElement("p");
-    // studentName.appendChild(studentInfoDiv);
-    // studentInfoDiv.innerText = foundStudent.courses;
-
-    // DATABASE.students[1].courses[1].started.semester
-
-    // if (passedCredits == foundCourse.totalCredits) {
-    //   let course = courseInfoDiv.parentElement;
-    //   course.style.backgroundColor = "lightgreen";
-
-    // }
   }
 }
 
