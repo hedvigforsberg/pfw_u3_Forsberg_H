@@ -4,13 +4,7 @@
 
 let input = document.getElementById("searchbox");
 
-// FUNCTIONS
-
-// Function to clear input-box on each page-refresh.
-
-window.onload = function () {
-  document.getElementById("searchbox").value = "";
-};
+// FUNCTIONS (in alphabetical order)
 
 // Function to find courses in the database by their titles.
 
@@ -27,7 +21,7 @@ function findCourseByTitle() {
   });
 }
 
-// .sort((a, b) => a.title - b.title)
+// Function to find the course responsible for each course.
 
 function findCourseResponsible(courses) {
   let courseResponsible = [];
@@ -44,6 +38,25 @@ function findCourseResponsible(courses) {
   }
   return courseResponsible;
 }
+
+// Function to find a student by its ID.
+
+function findStudentById(course) {
+  let foundStudents = [];
+
+  for (let student of DATABASE.students) {
+    for (let studentCourse of student.courses) {
+      if (studentCourse.courseId == course.courseId) {
+        foundStudents.push(student);
+      }
+    }
+  }
+
+  return foundStudents;
+}
+
+
+// Function to find the teachers for each course.
 
 function findTeachers(courses) {
   let teachers = [];
@@ -64,19 +77,7 @@ function findTeachers(courses) {
   return teachers.toString().split(",").join("");
 }
 
-function findStudentById(course) {
-  let foundStudents = [];
-
-  for (let student of DATABASE.students) {
-    for (let studentCourse of student.courses) {
-      if (studentCourse.courseId == course.courseId) {
-        foundStudents.push(student);
-      }
-    }
-  }
-
-  return foundStudents;
-}
+// Function to render a course with all the information it contains.
 
 function renderCourse(course) {
   let div = document.createElement("div");
@@ -125,7 +126,15 @@ function renderCourses(courses) {
   });
 }
 
-//   // Function to find courses by their courseID.
+// Function to clear input-box on each page-refresh.
+
+window.onload = function () {
+  document.getElementById("searchbox").value = "";
+};
+
+// EVENT LISTENERS
+
+// Event-listener to run the functions to filter through courses each time a key is pressed in the input field.
 
 input.addEventListener("keyup", function () {
   let course = findCourseByTitle();

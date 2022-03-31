@@ -4,13 +4,21 @@
 
 let input = document.getElementById("searchbox");
 
-// FUNCTIONS
+// FUNCTIONS (in alphabetical order)
 
-// Function to clear input-box on each page-refresh.
+// Function to find courses by their courseID.
 
-window.onload = function () {
-  document.getElementById("searchbox").value = "";
-};
+function findCourseById(student) {
+  let foundCourses = [];
+  for (let i = 0; i < student.courses.length; i++) {
+    foundCourses.push(
+      DATABASE.courses.find((course) => {
+        return course.courseId == student.courses[i].courseId;
+      })
+    );
+  }
+  return foundCourses;
+}
 
 // Function to find students in the database by their last name.
 
@@ -96,23 +104,15 @@ function totalCredits(student) {
   return totalSum;
 }
 
-// Function to find courses by their courseID.
+// Function to clear input-box on each page-refresh.
 
-function findCourseById(student) {
-  let foundCourses = [];
-  for (let i = 0; i < student.courses.length; i++) {
-    foundCourses.push(
-      DATABASE.courses.find((course) => {
-        return course.courseId == student.courses[i].courseId;
-      })
-    );
-  }
-  return foundCourses;
-}
+window.onload = function () {
+  document.getElementById("searchbox").value = "";
+};
 
 // EVENT LISTENERS
 
-// Event-listener to run the functions to filter through students each time a key is pressed.
+// Event-listener to run the functions to filter through students each time a key is pressed in the input field.
 input.addEventListener("keyup", function () {
   let student = findStudentsByLastName();
   let studentsDiv = document.getElementById("students");
