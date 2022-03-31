@@ -1,53 +1,92 @@
-body {
-    height: 100vh;
-    background-color:aliceblue;
+:root {
+    --white: white;
+    --black: black;
 }
 
+* {
+    margin: 3px;
+    padding: 0;
+    box-sizing: border-box;
+    scrollbar-width: none;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    overflow: auto;
+    background-color: lightgray;
+}
+
+
 #header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+#header > a {
+    text-decoration: none;
+    color: var(--black);
 }
 
 #wrapper {
-    margin: 30px;
+    margin-top: 40px;
+    margin-bottom: 15px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+} 
+
+h3 {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+#courseresponsible > div {
+    grid-template-columns: auto;
+    border: solid 3px lightgray;
+    border-radius: 5px;
+    padding: 8px;
+}
+
+#teachers > div {
+    display: flex;
+    border: solid 3px lightgray;
+    border-radius: 5px;
+    padding: 8px;
+}
+
+h3 > div {
+    font-weight: normal;
 }
 
 .course {
-    border: solid 1px skyblue  ;
-    height: 100%;
     padding: 10px;
-    margin-top: 10px;
-
+    border: 5px solid lightgray;
+    background-color: var(--white);
 }
 
-.teacher {
-    border: solid 1px skyblue  ;
-    height: 100%;
-    padding: 10px;
-    margin-top: 10px;
+.course > div {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
 }
 
-#courseresponsible {
-    border: solid 1px skyblue  ;
-    height: 100%;
-    padding: 10px;
-    margin-top: 10px;
-}
+.course {
+    border: solid 3px lightgray;
+    border-radius: 5px;
+    padding: 8px;
 
-#teachers {
-    border: solid 1px skyblue  ;
-    height: 100%;
-    padding: 10px;
-    margin-top: 10px;
-}
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
 
+} 
 
 .passed {
     background-color: lightgreen;
-}
-
-p {
-    margin: 0;
-}
-
-#text {
-    display: none;
 }

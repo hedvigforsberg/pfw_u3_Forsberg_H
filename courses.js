@@ -86,13 +86,15 @@ function renderCourse(course) {
   div.classList.add("course");
 
   div.innerHTML = `
-    <div>${course.title} (Total: ${course.totalCredits} credits)</div>
-    <div id="courseresponsible">Course Responsible: ${findCourseResponsible(
+    <h2>${course.title} (Total: ${course.totalCredits} credits)</h2>
+    <h3 id="courseresponsible">Course Responsible: ${findCourseResponsible(
       course
-    )}</div>
-    <div id="teachers">Teachers: ${findTeachers(course)}</div>
-    <div id="students">Students:</div>
+    )}</h3>
+    <h3 id="teachers">Teachers: ${findTeachers(course)}</h3>
+    <h3 id="students">Students:</h3>
   `;
+
+  let studentWrapper = document.createElement("div");
 
   for (let student of DATABASE.students) {
     for (let studentCourse of student.courses) {
@@ -108,8 +110,8 @@ function renderCourse(course) {
         if (studentCourse.passedCredits == course.totalCredits) {
           p.classList.add("passed");
         }
-
-        div.appendChild(p);
+        studentWrapper.appendChild(p);
+        div.appendChild(studentWrapper);
       }
     }
   }
