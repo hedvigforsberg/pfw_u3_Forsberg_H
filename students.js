@@ -41,18 +41,20 @@ function renderStudent(student) {
   div.classList.add("student");
   
   div.innerHTML = `
-    <div>${student.firstName} ${student.lastName} (Total: ${credits} credits)</div>
-    <div id=courses>Courses:</div>
+    <h2>${student.firstName} ${student.lastName} (Total: ${credits} credits)</h2>
+    <h3 id=courses>Courses:</h3>
   `;
+
+  let courseWrapper = document.createElement("div");
 
   for (let i = 0; i < foundCourses.length; i++) {
     let foundCourse = foundCourses[i];
-    // let passedCredits = DATABASE.students[i].courses[i].passedCredits;
 
     let courseTitle = document.createElement("div");
     courseTitle.classList.add("course");
-    div.appendChild(courseTitle);
-    
+    courseWrapper.appendChild(courseTitle);
+    div.appendChild(courseWrapper);
+
     courseTitle.innerText = foundCourse.title;
 
     let passedCredits = student.courses[i].passedCredits;
@@ -69,7 +71,8 @@ function renderStudent(student) {
       
     }
    }
-}
+  }
+
 
 // Function to loop through each student to add the HTML onto the webpage.
 
