@@ -1,76 +1,82 @@
-:root {
-    --white: white;
-    --black: black;
-    --chosen: transparent;
-    --chosen-alt: transparent;
-}
-
 * {
-    margin: 3px;
-    padding: 0;
-    box-sizing: border-box;
-    scrollbar-width: none;
-    font-family: 'Open Sans', sans-serif;
+  margin: 3px;
+  padding: 0;
+  box-sizing: border-box;
+  scrollbar-width: none;
+  font-family: "Open Sans", sans-serif;
 }
 
 body {
-    min-height: 100vh;
-    overflow: auto;
-    background-color: lightgray;
+  min-height: 100vh;
+  overflow: auto;
+  background-color: rgb(224, 224, 224);
+  color: black;
 }
 
-
 #header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+h1 {
+    color:rgb(94, 164, 94);
 }
 
 #header > a {
-    text-decoration: none;
-    color: var(--black);
+  cursor: pointer;
+  color:rgb(94, 164, 94);
 }
 
 #wrapper {
-    margin-top: 40px;
-    margin-bottom: 15px;
+  margin-top: 40px;
+  margin-bottom: 15px;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-} 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
 h3 {
-    margin-bottom: 10px;
-    margin-top: 10px;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .student {
-    padding: 10px;
-    border: 5px solid lightgray;
-    background-color: var(--white);
+  padding: 10px;
+  border: 5px solid lightgray;
+  background-color: white;
 }
 
 .student > div {
-    display: grid;
-    grid-template-columns: auto auto auto auto;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
 }
 
 .course {
-    border: solid 3px lightgray;
-    border-radius: 5px;
-    padding: 8px;
+  border: solid 3px lightgray;
+  border-radius: 5px;
+  padding: 8px;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-
-} 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
 
 .passed {
-    background-color: green;
+  background-color: lightgreen;
 }
+
+/* Dark mode */
+
+button {
+    cursor: pointer;
+}
+
+.dark-mode {
+    background-color: rgb(25, 25, 25);
+}
+

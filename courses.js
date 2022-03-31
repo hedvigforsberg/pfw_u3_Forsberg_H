@@ -147,3 +147,25 @@ input.addEventListener("keyup", function () {
     coursesDiv.innerHTML = "";
   }
 });
+
+// DARK BACKGROUND CODE
+
+function darkMode () {
+  let setTheme = document.body;
+  setTheme.classList.toggle("dark-mode");
+
+  let theme;
+  if (setTheme.classList.contains("dark-mode")) {
+    theme = "DARK";
+  } else {
+    theme = "LIGHT";
+  }
+
+  localStorage.setItem("theme", JSON.stringify(theme));
+}
+
+let getTheme = JSON.parse(localStorage.getItem("theme"));
+
+if (getTheme === "DARK") {
+  document.body.classList = "dark-mode";
+}

@@ -27,11 +27,15 @@ function findStudentsByLastName() {
     student.lastName.toLowerCase().includes(input.value.toLowerCase())
   );
 
-  return student.sort(function(a, b){
-    if(a.lastName < b.lastName) { return -1; }
-    if(a.lastName > b.lastName) { return 1; }
+  return student.sort(function (a, b) {
+    if (a.lastName < b.lastName) {
+      return -1;
+    }
+    if (a.lastName > b.lastName) {
+      return 1;
+    }
     return 0;
-});
+  });
 }
 
 // Function to create a student with the information.
@@ -45,9 +49,9 @@ function renderStudent(student) {
   let credits = totalCredits(student);
 
   let foundCourses = findCourseById(student);
-  
+
   div.classList.add("student");
-  
+
   div.innerHTML = `
     <h2>${student.firstName} ${student.lastName} (Total: ${credits} credits)</h2>
     <h3 id=courses>Courses:</h3>
@@ -68,19 +72,30 @@ function renderStudent(student) {
     let passedCredits = student.courses[i].passedCredits;
     let semester = student.courses[i].started.semester;
     let year = student.courses[i].started.year;
-    
+
     let courseInfoDiv = document.createElement("p");
     courseTitle.appendChild(courseInfoDiv);
-    courseInfoDiv.innerText =  semester + " " + year + " " + "(" + passedCredits + " " +  "of" + " " + foundCourse.totalCredits + " " + "credits" + ")";
-    
+    courseInfoDiv.innerText =
+      semester +
+      " " +
+      year +
+      " " +
+      "(" +
+      passedCredits +
+      " " +
+      "of" +
+      " " +
+      foundCourse.totalCredits +
+      " " +
+      "credits" +
+      ")";
+
     if (passedCredits == foundCourse.totalCredits) {
       let course = courseInfoDiv.parentElement;
       course.style.backgroundColor = "lightgreen";
-      
     }
-   }
   }
-
+}
 
 // Function to loop through each student to add the HTML onto the webpage.
 
@@ -124,3 +139,25 @@ input.addEventListener("keyup", function () {
     studentsDiv.innerHTML = "";
   }
 });
+
+// DARK BACKGROUND CODE
+
+function darkMode () {
+  let setTheme = document.body;
+  setTheme.classList.toggle("dark-mode");
+
+  let theme;
+  if (setTheme.classList.contains("dark-mode")) {
+    theme = "DARK";
+  } else {
+    theme = "LIGHT";
+  }
+
+  localStorage.setItem("theme", JSON.stringify(theme));
+}
+
+let getTheme = JSON.parse(localStorage.getItem("theme"));
+
+if (getTheme === "DARK") {
+  document.body.classList = "dark-mode";
+}
